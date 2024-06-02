@@ -1,6 +1,6 @@
 {
-    "name": "marionline/flarum-import-fluxbb",
-    "description": "Import FluxBB data to Flarum",
+    "name": "gerardwalace/flarum-import-fluxbb",
+    "description": "Import Lutece FluxBB data to Flarum",
     "license": "GPL-3.0-or-later",
     "type": "flarum-extension",
     "require": {
@@ -14,7 +14,7 @@
     },
     "extra": {
         "flarum-extension": {
-            "title": "FluxBB Importer",
+            "title": "Lutece FluxBB Importer",
             "icon": {
                 "name": "fas fa-file-import",
                 "backgroundColor": "#08c",
