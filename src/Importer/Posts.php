@@ -36,6 +36,7 @@ class Posts
 
         $arr_topic_id = $this->database->connection()->table('discussions')->pluck('id')->toArray();
 
+        $this->database->connection('fluxbb')->statement('SET names latin1');
         $posts = $this->database->connection('fluxbb')
             ->table('posts')
             ->select(
