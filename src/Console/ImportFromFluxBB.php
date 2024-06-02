@@ -161,7 +161,7 @@ class ImportFromFluxBB extends AbstractCommand
                 'strict' => true,
                 'engine' => null,
                 'charset' => 'latin1',
-                'collation' => 'latin1_swedish_ci',
+                // 'collation' => 'latin1_swedish_ci',
             ], 'fluxbb');
         } else {
             $this->error($fluxBBDIR . 'config.php do not exist.');
