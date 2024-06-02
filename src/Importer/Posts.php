@@ -36,7 +36,6 @@ class Posts
 
         $arr_topic_id = $this->database->connection()->table('discussions')->pluck('id')->toArray();
 
-        $this->database->connection('fluxbb')->statement('SET names latin1');
         $posts = $this->database->connection('fluxbb')
             ->table('posts')
             ->select(
@@ -80,7 +79,8 @@ class Posts
                         'created_at' => (new \DateTime())->setTimestamp($post->posted),
                         'user_id' => $post->poster_id > 1 ? $post->poster_id : null,
                         'type' => 'comment',
-                        'content' => $this->convertPostContent($post),
+                        // 'content' => $this->convertPostContent($post),
+                        'content' => $post->message,
                         'edited_at' => $post->edited ? (new \DateTime())->setTimestamp($post->edited) : null,
                         'edited_user_id' => $post->edited_by ? $this->getUserByName($post->edited_by) : null,
                         'hidden_at' => null,
