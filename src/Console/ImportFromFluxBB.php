@@ -160,7 +160,8 @@ class ImportFromFluxBB extends AbstractCommand
                 'prefix' => $db_prefix,
                 'strict' => true,
                 'engine' => null,
-                'charset' => 'utf8mb4',
+                'charset' => 'latin1',
+                'collation' => 'latin1_swedish_ci',
             ], 'fluxbb');
         } else {
             $this->error($fluxBBDIR . 'config.php do not exist.');
