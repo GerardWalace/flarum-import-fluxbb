@@ -28,7 +28,6 @@ class Users
                     'id',
                     'group_id',
                     'username',
-                    'moto',
                     'password',
                     'email',
                     'title',
@@ -41,23 +40,13 @@ class Users
                     'disp_posts',
                     'email_setting',
                     'notify_with_post',
-                    'auto_notify',
                     'show_smilies',
                     'show_img',
                     'show_img_sig',
                     'show_avatars',
                     'show_sig',
-                    'timezone',
-                    'dst',
-                    'time_format',
-                    'date_format',
-                    'language',
-                    'style',
                     'num_posts',
                     'last_post',
-                    'last_search',
-                    'last_email_sent',
-                    'last_report_sent',
                     'registered',
                     'registration_ip',
                     'last_visit',
@@ -78,9 +67,6 @@ class Users
 
         foreach ($users as $user) {
             $lastSeenAt = (new \DateTime())->setTimestamp($user->last_visit);
-            if (!is_null($user->moto) AND strlen($user->moto) >=2 ) {
-                $user->signature =  TextFormatter::parse($user->signature . "\n[b]Moto principale:[/b] " . $user->moto);
-            }
             $this->database
                 ->table('users')
                 ->insert(
@@ -141,10 +127,6 @@ class Users
     {
         $preferences = [];
 
-        if ($user->auto_notify) {
-            $preferences['followAfterReply'] = true;
-        }
-
         if (!$preferences) {
             return null;
         }
@@ -192,7 +174,7 @@ class Users
     {
         $topics = $this->database->connection('fluxbb')
             ->table('topics')
-            ->join('posts', 'topics.first_post_id', '=', 'posts.id')
+            ->join('posts', 'topics.id', '=', 'posts.topic_id')
             ->select('topic_id')
             ->where('posts.poster_id', '=', $userId)
             ->get()

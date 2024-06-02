@@ -20,6 +20,15 @@ class Topics
     {
         $output->writeln('Importing topics...');
 
+        // Necessite de créer une colonne avec la requete suivante
+        // UPDATE xpunbb_topics as t
+        // inner join xpunbb_posts as p on p.topic_id = t.id
+        // set t.first_post_id = p.id
+        // update xpunbb_topics as t1
+        // join (select t.id, min(p.id) as minvalue from xpunbb_topics as t inner join xpunbb_posts as p on p.topic_id = t.id group by t.id) as t2
+        // on t1.id = t2.id
+        // set t1.first_post_id = t2.minvalue;
+
         $topics = $this->database->connection('fluxbb')
             ->table('topics')
             ->select(
@@ -56,7 +65,7 @@ class Topics
             $tagIds = [$this->getParentTagId($topic->forum_id), $topic->forum_id];
 
             // if ($this->replaceSolvedHintByTag($topic->subject)) {
-                // $tagIds[] = $solvedTagId;
+            // $tagIds[] = $solvedTagId;
             // }
 
             $this->database

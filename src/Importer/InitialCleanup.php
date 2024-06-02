@@ -24,10 +24,11 @@ class InitialCleanup
 
         $this->database->statement('SET FOREIGN_KEY_CHECKS=0');
         $this->database->table('users')->truncate();
+        $this->database->table('access_tokens')->truncate();
         foreach (glob($this->container[Paths::class]->public . '/assets/avatars/*.*') as $avatar) {
             unlink($avatar);
         }
-        $this->database->table('groups')->truncate();
+        // $this->database->table('groups')->truncate();
         $this->database->table('group_user')->truncate();
 
         $this->database->table('tags')->truncate();
@@ -40,6 +41,5 @@ class InitialCleanup
         $this->database->table('flags')->truncate();
 
         $this->database->statement('SET FOREIGN_KEY_CHECKS=1');
-
     }
 }

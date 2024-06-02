@@ -64,9 +64,9 @@ class Avatars
 
         $newFileName = Str::random() . '.png';
         $newDir = $this->container[Paths::class]->public . '/assets/avatars';
-		if (!is_dir($newDir)) {
-			mkdir($newDir);
-		}
+        if (!is_dir($newDir)) {
+            mkdir($newDir);
+        }
         $newPath = $newDir . '/' . $newFileName;
         if (file_exists($newPath)) {
             throw new \RuntimeException('Avatar already exists: ' . $newFileName);
@@ -74,9 +74,11 @@ class Avatars
 
         Image::configure(['driver' => 'imagick']);
         $image = Image::make($avatarFile);
-        if (!Str::endsWith($avatarFile, '.png')
+        if (
+            !Str::endsWith($avatarFile, '.png')
             || $image->getWidth() !== $image->getHeight()
-            || $image->getWidth() > 100) {
+            || $image->getWidth() > 100
+        ) {
             $newSize = max($image->getWidth(), $image->getHeight());
             if ($newSize > 100) {
                 $newSize = 100;

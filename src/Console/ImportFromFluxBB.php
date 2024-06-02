@@ -104,7 +104,7 @@ class ImportFromFluxBB extends AbstractCommand
         // Import users, groups AND Avatars
         $this->users->execute($this->output);
         $this->avatars->execute($this->output, $this->avatarsDir);
-        $this->groups->execute($this->output);
+        // $this->groups->execute($this->output);
 
         // Start import the Forum
         $this->categories->execute($this->output);
@@ -112,16 +112,17 @@ class ImportFromFluxBB extends AbstractCommand
         $this->topics->execute($this->output);
         $this->posts->execute($this->output);
 
-        $this->topicSubscriptions->execute($this->output);
-        $this->forumSubscriptions->execute($this->output);
-        $this->bans->execute($this->output);
-        $this->reports->execute($this->output);
-        $this->postMentionsUser->execute($this->output);
+        // $this->topicSubscriptions->execute($this->output);
+        // $this->forumSubscriptions->execute($this->output);
+        // $this->bans->execute($this->output);
+        // $this->reports->execute($this->output);
+        // $this->postMentionsUser->execute($this->output);
 
         $this->validation->execute($this->output);
     }
 
-    protected function checkRequiredExtension() {
+    protected function checkRequiredExtension()
+    {
         $requiredExtensions = [
             'flarum-bbcode',
             'flarum-emoji',
@@ -133,7 +134,9 @@ class ImportFromFluxBB extends AbstractCommand
             'flarum-suspend',
             'flarum-lock',
             'migratetoflarum-old-passwords',
+            'fof-polls',
             'fof-user-bio'
+
         ];
         foreach ($requiredExtensions as $requiredExtension) {
             if (!$this->extensionManager->isEnabled($requiredExtension)) {
@@ -143,8 +146,9 @@ class ImportFromFluxBB extends AbstractCommand
         }
     }
 
-    protected function getFluxBBDBConnection($fluxBBDIR) {
-        if(file_exists($fluxBBDIR . 'config.php')) {
+    protected function getFluxBBDBConnection($fluxBBDIR)
+    {
+        if (file_exists($fluxBBDIR . 'config.php')) {
             include($fluxBBDIR . 'config.php');
 
             $this->DBmanager->addConnection([
@@ -165,9 +169,10 @@ class ImportFromFluxBB extends AbstractCommand
         };
     }
 
-    protected function checkFluxBBAvatarDir($fluxBBDIR) {
+    protected function checkFluxBBAvatarDir($fluxBBDIR)
+    {
         $this->avatarsDir = $fluxBBDIR . 'img/avatars/';
-        if(!is_dir($this->avatarsDir)) {
+        if (!is_dir($this->avatarsDir)) {
             $this->error($this->avatarsDir . ' : not exist or is not a directory. Please check.');
             exit;
         }

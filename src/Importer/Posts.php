@@ -114,8 +114,8 @@ class Posts
     {
         $content = $this->replaceUnsupportedBBCode($post->message);
         $return = $this->formatter->parse(
-            $content,
-            CommentPost::reply($post->topic_id, $content, $post->poster_id, $post->poster_ip)
+            $content //,
+            // CommentPost::reply($post->topic_id, $content, $post->poster_id, $post->poster_ip)
         );
         return $return;
     }
@@ -132,7 +132,7 @@ class Posts
 
             // '#<a href="thread\.php\?[^"]*thread=([0-9]+)[^"]*">\[url\].+?\[/url\]</a>#' => '[URL]https://bbs.archlinux.de/viewtopic.php?id=$1[/URL]',
             // '#<a href="thread\.php\?[^"]*thread=([0-9]+)[^"]*">(.+?)</a>#' => '[URL=https://bbs.archlinux.de/viewtopic.php?id=$1]$2[/URL]',
-//
+            //
             // '#<a href="showArticle\.php\?link=(.+?)">(.+?)</a>#' => '[URL=https://wiki.archlinux.de/title/$1]$2[/URL]',
             // '#<a href="packages\.php.*?">(.+?)</a>#' => '[URL=https://www.archlinux.de/packages]$1[/URL]',
 
@@ -170,7 +170,7 @@ class Posts
             mkdir($cacheDirectory);
         }
         $repository = new Repository(new FileStore(new Filesystem, $cacheDirectory));
-        $formatter = new Formatter( $repository, $cacheDirectory);
+        $formatter = new Formatter($repository, $cacheDirectory);
 
         $formatter->addConfigurationCallback(
             function (Configurator $config) {
@@ -187,8 +187,8 @@ class Posts
                 $config->BBCodes->addFromRepository('LIST');
                 $config->BBCodes->addFromRepository('DEL');
                 $config->BBCodes->addFromRepository('COLOR');
-//                $config->BBCodes->addFromRepository('CENTER');
-//                $config->BBCodes->addFromRepository('SIZE');
+                //                $config->BBCodes->addFromRepository('CENTER');
+                //                $config->BBCodes->addFromRepository('SIZE');
                 $config->BBCodes->addFromRepository('*');
 
                 // Emoji extension
