@@ -250,6 +250,14 @@ class Posts
                     ':cool:' => '😎',
                     //TODO
                     //ADD Other emoticons?
+                    ':mrgreen:' => '🧌',
+                    ':lx:' => '🤪',
+                    ':eddie:' => '🍆',
+                    ':jc:' => '🎉🎊🎉',
+                    ':prez:' => '😭',
+                    ':mamar:' => '💩',
+                    ':laraigne:' => '👑👑👑',
+                    
                 ];
 
                 foreach ($emoticons as $code => $emoji) {
