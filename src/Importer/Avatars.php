@@ -88,7 +88,7 @@ class Avatars
         } else {
             copy($avatarFile, $newPath);
         }
-        system('optipng -o 5 -strip all -snip -quiet ' . $newPath);
+        // system('optipng -o 5 -strip all -snip -quiet ' . $newPath);
 
         return $newFileName;
     }
