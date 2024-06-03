@@ -112,7 +112,8 @@ class Posts
 
     private function convertPostContent(object $post): string
     {
-        $content = mb_convert_encoding($post->message, 'UTF-8', 'HTML-ENTITIES');
+        // $content = mb_convert_encoding($post->message, 'UTF-8', 'HTML-ENTITIES');
+        $content = $post->message;
         $content = $this->replaceUnsupportedBBCode($content);
         $return = $this->formatter->parse(
             $content //,

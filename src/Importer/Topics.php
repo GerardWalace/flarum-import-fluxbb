@@ -93,19 +93,6 @@ class Topics
                         'is_sticky' => $topic->sticky
                     ]
                 );
-                // $title = $this->database
-                // ->table('discussions')
-                // ->select('title')
-                // ->where('id', $topic->id)
-                // ->get();
-                // $this->database
-                // ->table('discussions')
-                // ->where('id', $topic->id)
-                // ->update(
-                //     [
-                //         'title' => mb_convert_encoding($title, 'UTF-8', 'HTML-ENTITIES'),
-                //     ]
-                // );
 
             foreach ($tagIds as $tagId) {
                 $this->database
