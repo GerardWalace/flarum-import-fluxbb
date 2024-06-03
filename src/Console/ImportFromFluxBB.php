@@ -134,7 +134,7 @@ class ImportFromFluxBB extends AbstractCommand
             'flarum-suspend',
             'flarum-lock',
             'migratetoflarum-old-passwords',
-            'fof-user-bio'
+            // 'fof-user-bio'
 
         ];
         foreach ($requiredExtensions as $requiredExtension) {

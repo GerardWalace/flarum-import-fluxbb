@@ -73,7 +73,7 @@ class Topics
                 ->insert(
                     [
                         'id' => $topic->id,
-                        'title' => mb_convert_encoding($topic->subject, 'UTF-8', 'HTML-ENTITIES'),
+                        'title' => $topic->subject,
                         'comment_count' => $numberOfPosts,
                         'participant_count' => $this->getParticipantCountByTopic($topic->id),
                         'post_number_index' => $numberOfPosts,
@@ -91,6 +91,19 @@ class Topics
                         'is_approved' => 1,
                         'is_locked' => $topic->closed,
                         'is_sticky' => $topic->sticky
+                    ]
+                );
+                $title = $this->database
+                ->table('discussions')
+                ->select('title')
+                ->where('id', $topic->id)
+                ->get();
+                $this->database
+                ->table('discussions')
+                ->where('id', $topic->id)
+                ->update(
+                    [
+                        'title' => mb_convert_encoding($title, 'UTF-8', 'HTML-ENTITIES'),
                     ]
                 );
 
