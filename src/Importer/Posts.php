@@ -128,6 +128,10 @@ class Posts
             '#\[em\](.+?)\[/em\]#i' => '[I]$1[/I]',
             '#\[ins\](.+?)\[/ins\]#i' => '[I]$1[/I]',
 
+            // On passe une ligne pour les quotes
+            '#\[quote=(.+?)\](.+?)\[/quote\]#i' => '[quote=$1]
+$2[/quote]',
+
             // FluxBB uses a different syntax
             '#\[img=(.+?)\](.+?)\[/img\]#i' => '[IMG ALT=$1]$2[/IMG]',
 
