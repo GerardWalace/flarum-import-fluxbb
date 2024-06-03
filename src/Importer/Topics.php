@@ -73,7 +73,7 @@ class Topics
                 ->insert(
                     [
                         'id' => $topic->id,
-                        'title' => $topic->subject,
+                        'title' => mb_convert_encoding($topic->subject, 'UTF-8', 'HTML-ENTITIES'),
                         'comment_count' => $numberOfPosts,
                         'participant_count' => $this->getParticipantCountByTopic($topic->id),
                         'post_number_index' => $numberOfPosts,

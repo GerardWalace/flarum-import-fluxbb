@@ -86,7 +86,7 @@ class Users
                         'comment_count' => $this->getCommentCount($user->id),
                         'read_flags_at' => null,
                         'suspended_until' => null,
-                        'bio' => $user->signature,
+                        'bio' => mb_convert_encoding($user->signature, 'UTF-8', 'HTML-ENTITIES'),
                         'migratetoflarum_old_password' => $this->createOldPasswordHash($user->password)
                     ]
                 );
