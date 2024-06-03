@@ -73,7 +73,7 @@ class Topics
                 ->insert(
                     [
                         'id' => $topic->id,
-                        'title' => $topic->subject,
+                        'title' => html_entity_decode($topic->subject),
                         'comment_count' => $numberOfPosts,
                         'participant_count' => $this->getParticipantCountByTopic($topic->id),
                         'post_number_index' => $numberOfPosts,
