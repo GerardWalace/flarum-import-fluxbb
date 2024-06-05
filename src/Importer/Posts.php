@@ -131,7 +131,8 @@ class Posts
 
             // On passe une ligne pour les quotes
             '#\[quote=(.+?)\](.+?)\[/quote\]#i' => '[quote=$1]
-$2[/quote]',
+$2
+[/quote]',
 
             // FluxBB uses a different syntax
             '#\[img=(.+?)\](.+?)\[/img\]#i' => '[IMG ALT=$1]$2[/IMG]',
